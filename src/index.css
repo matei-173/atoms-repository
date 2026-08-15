@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+
+  /* Light theme */
+  --color-cream: #FBF9F5;
+  --color-ink: #191919;
+  --color-surface: #ffffff;
+  --color-surface-alt: rgba(255, 255, 255, 0.5);
+  --color-border: rgba(25, 25, 25, 0.1);
+  --color-glass-bg: rgba(255, 255, 255, 0.4);
+  --color-glass-border: rgba(255, 255, 255, 0.3);
+  --color-glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.03);
+  --color-glass-nav-bg: rgba(255, 255, 255, 0.4);
+  --color-glass-nav-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --color-pill-active: rgba(25, 25, 25, 0.92);
+  --color-input-bg: rgba(255, 255, 255, 0.5);
+  --color-input-border: rgba(255, 255, 255, 0.3);
+  --color-timer-track: rgba(25, 25, 25, 0.06);
+  --color-timer-progress: #191919;
+  --color-knob: #ffffff;
+  --color-knob-shadow: rgba(0, 0, 0, 0.15);
+}
+
+.dark {
+  color-scheme: dark;
+  --color-cream: #121212;
+  --color-ink: #F5F5F0;
+  --color-surface: #1C1C1F;
+  --color-surface-alt: rgba(28, 28, 31, 0.6);
+  --color-border: rgba(245, 245, 240, 0.12);
+  --color-glass-bg: rgba(28, 28, 31, 0.55);
+  --color-glass-border: rgba(245, 245, 240, 0.1);
+  --color-glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.2);
+  --color-glass-nav-bg: rgba(20, 20, 22, 0.6);
+  --color-glass-nav-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --color-pill-active: rgba(245, 245, 240, 0.92);
+  --color-input-bg: rgba(40, 40, 44, 0.6);
+  --color-input-border: rgba(245, 245, 240, 0.12);
+  --color-timer-track: rgba(245, 245, 240, 0.08);
+  --color-timer-progress: #F5F5F0;
+  --color-knob: #2a2a2e;
+  --color-knob-shadow: rgba(0, 0, 0, 0.4);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+  overflow: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font-family: inherit;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Liquid glass surfaces — multi-layered Apple visionOS style */
+.glass {
+  background-color: var(--color-glass-bg);
+  backdrop-filter: blur(48px) saturate(180%);
+  -webkit-backdrop-filter: blur(48px) saturate(180%);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--color-glass-shadow);
+}
+
+.glass-card {
+  background-color: var(--color-glass-bg);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--color-glass-shadow);
+}
+
+.glass-nav {
+  background-color: var(--color-glass-nav-bg);
+  backdrop-filter: blur(64px) saturate(200%);
+  -webkit-backdrop-filter: blur(64px) saturate(200%);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: var(--color-glass-nav-shadow);
+}
+
+.glass-pill-active {
+  background-color: var(--color-pill-active);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 4px 14px rgba(25, 25, 25, 0.18);
+}
+
+.glass-input {
+  background-color: var(--color-input-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--color-input-border);
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+  background-position: center;
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop-in {
+  animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes float-up {
+  0% { transform: translateY(8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.animate-float-up {
+  animation: float-up 0.45s ease-out both;
+}
